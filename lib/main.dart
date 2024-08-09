@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         content: const Text('Bem-vindo ao aplicativo de boletim acadêmico! Aqui você pode cadastrar disciplinas e notas, e gerar relatórios.'),
         actions: [
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Row(
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               onPressed: () {
                 setState(() {
                   _selectedIndex = 0; // Navega para a tela de disciplinas
@@ -83,12 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Center(
                 child: Text(
                   _selectedIndex == 0 ? 'Disciplinas' : 'Relatórios',
-                  style: TextStyle(fontSize: 24),
+                  style: const TextStyle(fontSize: 24),
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.help),
+              icon: const Icon(Icons.help),
               onPressed: _showHelpDialog,
             ),
           ],
@@ -96,17 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: [
-      // Imagem de fundo
+
       Positioned.fill(
       child: Opacity(
-      opacity: 0.05, // Ajuste a opacidade conforme necessário
+      opacity: 0.05,
         child: Image.asset(
           'assets/fundo.jpg',
           fit: BoxFit.cover,
         ),
       ),
     ),
-    // Conteúdo do app
      _selectedIndex == 0
           ?  Column(
         children: [
@@ -148,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
         onPressed: _openCadastroScreen,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         tooltip: 'Adicionar Disciplina',
       )
           : null,

@@ -10,7 +10,7 @@ class RelatorioScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Relatórios'),
+        title: const Text('Relatórios'),
       ),
       body: FutureBuilder<void>(
         future: Future.wait([
@@ -61,19 +61,19 @@ class RelatorioScreen extends StatelessWidget {
               });
 
               return Card(
-                margin: EdgeInsets.all(8.0),
+                margin: const EdgeInsets.all(8.0),
                 child: ExpansionTile(
                   title: Text(discipline.name),
                   subtitle: Text(discipline.isSemester ? 'Semestral' : 'Anual'),
                   trailing: IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                     onPressed: () async {
                       //
                       final confirmed = await showDialog<bool>(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text('Excluir disciplina'),
-                          content: Text('Tem certeza de que deseja excluir esta disciplina e suas notas?'),
+                          title: const Text('Excluir disciplina'),
+                          content: const Text('Tem certeza de que deseja excluir esta disciplina e suas notas?'),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.of(context).pop(false),

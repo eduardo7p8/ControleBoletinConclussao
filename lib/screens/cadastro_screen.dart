@@ -22,7 +22,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Disciplinas e Notas'),
+        title: const Text('Cadastro de Disciplinas e Notas'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,23 +35,23 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () => _showAddDisciplineDialog(context),
-                    child: Text('Cadastrar Disciplina'),
+                    child: const Text('Cadastrar Disciplina'),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   FutureBuilder<void>(
                     future: disciplineStore.fetchDisciplines(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                       if (snapshot.hasError) {
-                        return Center(child: Text('Erro ao carregar disciplinas'));
+                        return const Center(child: Text('Erro ao carregar disciplinas'));
                       }
                       if (disciplineStore.disciplines.isEmpty) {
-                        return Center(child: Text('Nenhuma disciplina cadastrada.'));
+                        return const Center(child: Text('Nenhuma disciplina cadastrada.'));
                       }
                       return DropdownButtonFormField<int>(
-                        hint: Text('Selecione a Disciplina'),
+                        hint: const Text('Selecione a Disciplina'),
                         value: _selectedDisciplineId,
                         onChanged: (int? value) {
                           setState(() {
@@ -71,10 +71,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   ),
                   if (_selectedDisciplineId != null)
                     _buildSemesterSelector(disciplineStore),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _gradeController,
-                    decoration: InputDecoration(labelText: 'Nota'),
+                    decoration: const InputDecoration(labelText: 'Nota'),
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -87,10 +87,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _yearController,
-                    decoration: InputDecoration(labelText: 'Ano'),
+                    decoration: const InputDecoration(labelText: 'Ano'),
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -103,14 +103,14 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         _saveGrade(context);
                       }
                     },
-                    child: Text('Salvar Nota'),
+                    child: const Text('Salvar Nota'),
                   ),
                 ],
               ),
@@ -155,14 +155,14 @@ class _CadastroScreenState extends State<CadastroScreen> {
       print('Nota salva: ${grade.toString()}');
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Nota salva com sucesso!')),
+        const SnackBar(content: Text('Nota salva com sucesso!')),
       );
 
       _gradeController.clear();
       setState(() {});
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao salvar a nota. Verifique os campos e tente novamente.')),
+        const SnackBar(content: Text('Erro ao salvar a nota. Verifique os campos e tente novamente.')),
       );
     }
   }
@@ -177,16 +177,16 @@ class _CadastroScreenState extends State<CadastroScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: Text('Cadastrar Disciplina'),
+              title: const Text('Cadastrar Disciplina'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextField(
                     controller: _nameController,
-                    decoration: InputDecoration(labelText: 'Nome da Disciplina'),
+                    decoration: const InputDecoration(labelText: 'Nome da Disciplina'),
                   ),
                   SwitchListTile(
-                    title: Text('Semestral'),
+                    title: const Text('Semestral'),
                     value: _isSemester,
                     onChanged: (value) {
                       setState(() {
@@ -201,7 +201,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Cancelar'),
+                  child: const Text('Cancelar'),
                 ),
                 TextButton(
                   onPressed: () {
@@ -216,7 +216,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     //
                     setState(() {});
                   },
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                 ),
               ],
             );
